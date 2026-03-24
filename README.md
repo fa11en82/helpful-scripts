@@ -1,2 +1,2 @@
 # helpful-scripts
-items that help during setup
+items that help during ubuntu server setup
