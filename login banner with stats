@@ -1,0 +1,58 @@
+Step 1) Switch to root user: sudo su -
+Step 2) sed -i 's/#$nrconf{restart} = '"'"'i'"'"';/$nrconf{restart} = '"'"'a'"'"';/g' /etc/needrestart/needrestart.conf
+Step 3) sed -i 's/#$nrconf{kernelhints} = -1;/$nrconf{kernelhints} = -1;/g' /etc/needrestart/needrestart.conf
+Step 4) apt install git vim htop unrar-free curl neofetch -y
+Step 5) chmod -x /etc/update-motd.d/10-help-text
+Step 6) chmod -x /etc/update-motd.d/50-motd-news
+Step 7) nano /etc/update-motd.d/01-custom
+Step 8) paste:
+#!/bin/sh
+/usr/bin/neofetch --color_blocks
+HIGHEST_KERNEL=`find /boot/vmlinuz-* | sort -V | tail -n 1 | sed 's|.*vmlinuz-||'`
+RUNNING_KERNEL=`uname -r`
+echo "Highest Kernel: $HIGHEST_KERNEL
+Running Kernel: $RUNNING_KERNEL"
+if [ "$HIGHEST_KERNEL" != "$RUNNING_KERNEL" ]; then
+  echo "** Reboot Required **"
+fi
+Step 9) ctrl+s and ctrl+x
+Step 10) chmod +x /etc/update-motd.d/01-custom
+Step 11) Reboot
+
+Should look like this but in color:
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-101-generic x86_64)
+            .-/+oossssoo+/-.               root@servername
+        `:+ssssssssssssssssss+:`           ------------
+      -+ssssssssssssssssssyyssss+-         OS: Ubuntu 24.04.4 LTS x86_64
+    .ossssssssssssssssssdMMMNysssso.       Host: server type
+   /ssssssssssshdmmNNmmyNMMMMhssssss/      Kernel: 6.8.0-101-generic
+  +ssssssssshmydMMMMMMMNddddyssssssss+     Uptime: 53 secs
+ /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    Packages: 793 (dpkg), 4 (snap)
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Shell: bash 5.2.21
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   Resolution: 4096x2160
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   Terminal: run-parts
+ossyNMMMNyMMhsssssssssssssshmmmhssssssso   CPU: CPU type
++sssshhhyNMMNyssssssssssssyNMMMysssssss+   GPU: GPU type
+.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Memory: 329MiB / 7823MiB
+ /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/
+  +sssssssssdmydMMMMMMMMddddyssssssss+
+   /ssssssssssshdmNNNNmyNMMMMhssssss/
+    .ossssssssssssssssssdMMMNysssso.
+      -+sssssssssssssssssyyyssss+-
+        `:+ssssssssssssssssss+:`
+            .-/+oossssoo+/-.
+
+Highest Kernel: 6.8.0-101-generic
+Running Kernel: 6.8.0-101-generic
+
+ System information as of Thu Feb 26 07:08:23 AM UTC 2026
+
+  System load:           0.3
+  Usage of /:            1.6% of 454.37GB
+  Memory usage:          4%
+  Swap usage:            0%
+  Temperature:           45.0 C
+  Processes:             171
+  Users logged in:       0
+  IPv4 address for eno1: your ipv4
+  IPv6 address for eno1: your ipv6
