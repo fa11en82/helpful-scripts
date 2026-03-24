@@ -1,0 +1,14 @@
+#  Step 1. sudo nano /usr/bin/up
+#  Step 2.
+
+#!/bin/bash
+sudo apt-get update -y
+sudo apt list --upgradable
+read -p "Press enter to continue"
+sudo apt-get dist-upgrade -y
+sudo apt-get autoremove -y
+sudo apt-get autoclean -y
+
+#  Step 3. ctrl+s to save then ctrl+x to exit
+#  Step 4. sudo chmod a+x /usr/bin/up
+#  Step 5. (optional) add to sudo crontab
