@@ -1,0 +1,14 @@
+Step 1) sudo apt install samba -y
+Step 2) sudo nano /etc/samba/smb.conf
+Step 3) ensure under Global Settings>[global] that workgroup = WORKGROUP
+Step 4) at the end paste in:
+[devicename]
+    path = /home/username
+    valid users = @username
+    browsable = yes
+    writeable = yes
+    read only = no
+Step 5) ctrl+s and ctrl+x
+Step 6) sudo smbpasswd -a ubuntuusername
+Step 7) enter password
+Step 8) Map Network Drive on Windows PC
